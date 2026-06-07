@@ -1,0 +1,4 @@
+interface:
+  display_name: "TRPG Core Rulebook Reviewer"
+  short_description: "Design-first reviews for RPG core books"
+  default_prompt: "Use $trpg-core-rulebook-reviewer to create a design-first recommendations document for this tabletop RPG core rulebook."
