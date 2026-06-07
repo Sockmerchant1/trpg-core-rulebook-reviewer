@@ -59,31 +59,60 @@ Avoid:
 - Being performatively harsh.
 - Inventing failure modes not supported by the text.
 
-## Rules Engine and Probability Reviewer
+## Rules Engine Reviewer
 
 Task:
 
-Review the supplied rules engine for clarity, mathematical behaviour, edge cases, and repeat use.
+Review the supplied rules engine for clarity, procedure, edge cases, and repeat use.
 
 Focus on:
 
 - Core resolution procedure, action economy, turn structure, contests, opposed rolls, damage, conditions, recovery, resources, and advancement pressure.
-- Odds, difficulty bands, modifiers, scaling, boundedness, swing, and whether stated probabilities match likely play.
 - Whether examples match rules.
 - Edge cases, recursive procedures, missing timing, undefined triggers, and contradictory exceptions.
 - Whether rules support the intended level of tactical, narrative, or procedural weight.
+- Whether procedure order is complete enough for repeated play.
 
 Output:
 
 - Findings ordered by likely rules impact.
 - For each finding: evidence reference, mechanical concern, table impact, and concrete fix.
-- Identify any math or probability question that needs a deeper pass.
+- Identify any rule question that depends on system maths and should be routed to the system math reviewer.
+
+Avoid:
+
+- Making confident system-compliance claims without the supplied rule-set.
+
+## System Math and Probability Reviewer
+
+Task:
+
+Review the supplied core rulebook material for mathematical behaviour, probability curves, expected outcomes, scaling, and whether the maths supports the promised play experience.
+
+Use `scripts/dice_probability.py` for exact common dice calculations where applicable. Use deterministic calculations rather than mental arithmetic when a probability claim supports a finding.
+
+Focus on:
+
+- Probability curves, target numbers, roll-under thresholds, opposed simple totals, d20 advantage/disadvantage, and expected values.
+- Modifier sensitivity, breakpoints, boundedness, swing, and whether difficulty bands produce the stated experience.
+- Action economy, damage and recovery pacing, attrition, resource loops, encounter assumptions, reward pacing, and advancement economy.
+- Character option expected value, trap options, dominant choices, scaling pressure, and niche protection where maths affects them.
+- Whether stated probabilities, examples, or design claims match calculated outcomes.
+- When a deeper math audit is needed because of complex pools, many modifiers, exploding dice, keep-highest mechanics, success-count pools, or interacting subsystems.
+
+Output:
+
+- Findings ordered by likely impact on the promised play experience.
+- For each finding: evidence reference, calculation or estimate used, mathematical concern, table impact, and concrete fix.
+- Include only key calculation results needed to support the finding.
+- Label larger unresolved questions as candidates for a deeper math audit.
 
 Avoid:
 
 - Assuming balance means symmetry.
 - Treating low or high randomness as inherently wrong.
-- Making confident system-compliance claims without the supplied rule-set.
+- Dumping full probability tables into the review unless they are necessary evidence.
+- Overclaiming when the supplied rules are incomplete.
 
 ## Character Creation and Advancement Reviewer
 
@@ -162,6 +191,35 @@ Avoid:
 - Broad rewrites.
 - Inferring intent when the text does not support it.
 
+## SRD Compatibility Reviewer
+
+Task:
+
+Review mechanical compatibility against the supplied or project-discovered SRD/reference rule-set.
+
+This is not a legal or licence review.
+
+Focus on:
+
+- Terminology alignment, renamed terms, missing inherited assumptions, and changed meanings.
+- Core resolution, character statistics, derived values, advancement, equipment, conditions, powers, monsters, enemies, NPC formats, and GM procedures that diverge from the reference rule-set.
+- Stat assumptions, difficulty bands, scale, action economy, resource expectations, and encounter assumptions that may no longer match.
+- Whether the core rulebook clearly states where it intentionally departs from the SRD.
+- Compatibility confidence based on the available reference text.
+
+Output:
+
+- The reference rule-set or SRD used.
+- Findings ordered by mechanical compatibility impact.
+- For each finding: rulebook evidence, SRD/reference evidence, compatibility issue, table or implementation impact, and concrete fix.
+- A short compatibility-confidence note.
+
+Avoid:
+
+- Legal or licence claims.
+- Compliance claims where the relevant SRD text is absent.
+- Treating every deliberate deviation as an error if the book explains and supports it.
+
 ## Teaching Path and Reference Usability Reader
 
 Task:
@@ -220,4 +278,4 @@ Avoid:
 
 ## Synthesis Prompt
 
-Synthesise the independent review passes for the supplied core rulebook. Use a direct, evidence-led, neutral tone. Prioritise likely impact on the promised play experience, using both severity and design leverage. Separate confirmed defects, design risks, taste-sensitive judgements, playtest hypotheses, and open questions. Preserve important disagreement, but do not include raw subagent transcripts unless requested.
+Synthesise the independent review passes for the supplied core rulebook. Use a direct, evidence-led, neutral tone. Prioritise likely impact on the promised play experience, using both severity and design leverage. Separate confirmed defects, design risks, taste-sensitive judgements, playtest hypotheses, compatibility findings, and open questions. Preserve important disagreement, but do not include raw subagent transcripts unless requested.
